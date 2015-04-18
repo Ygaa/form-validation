@@ -1,0 +1,49 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
+		<title>Formularz imie</title>
+	</head>
+	<body>
+		<form action="">
+			<input type="text" name="str" value="" placeholder="podaj imie">
+			<input type="submit" name="sb" value="wyslij">
+		</form>
+		<a href="">wyslij</a>
+		<script>
+		function wysylka(){
+			var $formInput = $('form input[type="text"]');
+			var valid = true;
+			
+			if($formInput.val() == ''){
+				$formInput.addClass('invalid');
+				valid = false;
+				$('form').after("<div class='error'> Nie podałeś treści</div>"); 
+				$('form input[type="text"]').css("border-color", "red");
+				$('.error').css("color", "red");
+			} else{
+				$formInput.removeClass('invalid');
+				$('form').hide();
+				$('.error').css('border-color'); 
+				$('a').hide();
+			}
+		}
+		$('form').on('submit', function(){
+			wysylka();
+			return false;
+		});
+		$('a').on('click', function(){
+			wysylka();
+			return false;
+		});
+
+		$('form input[type="text"]').on('click', function(){
+			$('.error').fadeOut();
+			$('form input[type="text"]').removeAttr("style");
+		});
+
+
+		</script>
+	</body>
+</html>
